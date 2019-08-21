@@ -1,7 +1,7 @@
 import md5 from './md5.min.js'
 
-const appid = '20180802000191219'
-const key = '02LMiYALQE2vR4q0kaef'
+const appid = '20190821000328561'
+const key = 'LXq0A1XBXtmYz0X7cUNK'
 
 function translate(q, { from = 'auto', to = 'auto' } = { from: 'auto', to: 'auto' }) {
   return new Promise((resolve, reject) => {
@@ -20,8 +20,11 @@ function translate(q, { from = 'auto', to = 'auto' } = { from: 'auto', to: 'auto
       success(res) {
         if (res.data && res.data.trans_result) {
           resolve(res.data)
-        } else {
-          reject({ status: 'error', msg: '翻译失败' })
+        } else if (error_code) {
+          resolve(res.data)
+        }
+        else{
+          reject ({ status: 'error', msg: '翻译失败' })
           wx.showToast({
             title: '翻译失败',
             icon: 'none',
