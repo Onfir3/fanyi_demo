@@ -20,10 +20,9 @@ function translate(q, { from = 'auto', to = 'auto' } = { from: 'auto', to: 'auto
       success(res) {
         if (res.data && res.data.trans_result) {
           resolve(res.data)
-        } else if (error_code) {
+        }else if(error.code){
           resolve(res.data)
-        }
-        else{
+        } else {
           reject ({ status: 'error', msg: '翻译失败' })
           wx.showToast({
             title: '翻译失败',
